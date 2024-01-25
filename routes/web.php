@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\vacanteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,10 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
-
-require __DIR__.'/auth.php';
+Route::get('vacantes', [vacanteController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('vacantes.index');
+Route::get('vacantes/nueva', [vacanteController::class, 'create'])
+    ->middleware(['auth'])
+    ->name('vacantes.create');
+require __DIR__ . '/auth.php';
