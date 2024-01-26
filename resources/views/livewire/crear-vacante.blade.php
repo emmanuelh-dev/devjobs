@@ -24,7 +24,7 @@
     </div>
     <div>
         <x-input-label for="categoria" :value="__('Categoria Vacante')" />
-        <select wire:model='salario' id="salario"
+        <select wire:model='categoria' id="categoria"
             class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full">
             <option value="0">Seleccione</option>
             @foreach ($categorias as $categoria)
