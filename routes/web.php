@@ -16,17 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::view('dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
-Route::get('vacantes', [vacanteController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('vacantes.index');
-Route::get('vacantes/nueva', [vacanteController::class, 'create'])
-    ->middleware(['auth'])
-    ->name('vacantes.create');
+Route::view('profile', 'profile')->middleware(['auth'])->name('profile');
+Route::get('vacantes', [vacanteController::class, 'index'])->middleware(['auth'])->name('vacantes.index');
+
+Route::get('vacantes/nueva', [vacanteController::class, 'create'])->middleware(['auth'])->name('vacantes.create');
+Route::get('vacantes/{vacante}/edit', [vacanteController::class, 'edit'])->middleware(['auth'])->name('vacantes.edit');
+
 require __DIR__ . '/auth.php';

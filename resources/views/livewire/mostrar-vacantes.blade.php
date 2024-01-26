@@ -11,7 +11,7 @@
                         </div>
                         <div class="flex flex-col lg:flex-row gap-2">
                             <a class="p-2 text-center bg-gray-900 text-white rounded">Candidatos</a>
-                            <a class="p-2 text-center bg-blue-500 text-white rounded">Editar</a>
+                            <a href="{{ route('vacantes.edit', $vacante) }}" class="p-2 text-center bg-blue-500 text-white rounded">Editar</a>
                             <a class="p-2 text-center bg-red-500 text-white rounded">Eliminar</a>
                         </div>
                     </div>

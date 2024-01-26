@@ -9,8 +9,8 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if (session()->has('mensaje'))
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
+                    <div class="text-gray-900">
                         <div class="p-4 border border-green-500 sm:rounded-lg">
                             {{ session('mensaje') }}
                         </div>
