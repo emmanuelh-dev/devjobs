@@ -11,8 +11,10 @@
                         </div>
                         <div class="flex flex-col lg:flex-row gap-2">
                             <a class="p-2 text-center bg-gray-900 text-white rounded">Candidatos</a>
-                            <a href="{{ route('vacantes.edit', $vacante) }}" class="p-2 text-center bg-blue-500 text-white rounded">Editar</a>
-                            <a class="p-2 text-center bg-red-500 text-white rounded">Eliminar</a>
+                            <a href="{{ route('vacantes.edit', $vacante) }}"
+                                class="p-2 text-center bg-blue-500 text-white rounded">Editar</a>
+                            <button wire:click="$dispatch('eliminar', {{ $vacante }})"
+                                class="p-2 text-center bg-red-500 text-white rounded">Eliminar</button>
                         </div>
                     </div>
                 </div>
@@ -29,5 +31,29 @@
     <div class="flex justify-center mt-10">
         {{ $vacantes->links() }}
     </div>
-
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Livewire.on('eliminar', vacante => {
+                Swal.fire({
+                    title: vacante.titulo,
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#0048ff',
+                    cancelButtonColor: '#ff0000',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.dispatch('eliminarVacante', { vacante: vacante });
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+            })
+        </script>
+    @endpush
 </div>
