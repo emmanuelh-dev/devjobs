@@ -5,7 +5,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 flex justify-between items-center">
                         <div>
-                            <h2 class="text-lg font-bold">{{ $vacante->titulo }}</h2>
+                            <a href="{{ route('vacantes.show', $vacante) }}" class="text-lg font-bold">{{ $vacante->titulo }}</a>
                             <p class="font-bold text-gray-500">{{ $vacante->empresa }}</p>
                             <p class="text-sm font-semibold">Ultimo dia {{ $vacante->ultimo_dia }}</p>
                         </div>
