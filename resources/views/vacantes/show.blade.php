@@ -20,9 +20,14 @@
                     </div>
                     <div class="gap-4 flex flex-col-reverse lg:flex-row">
                         <img class="lg:w-1/3" src="{{ asset('storage/vacantes' . '/' . $vacante->imagen) }}" alt="">
-                        <div>
+                        <div class="space-y-4">
                             <p class="p-6 bg-neutral-100 rounded-lg">{{ $vacante->descripcion }}</p>
-                            <x-primary-link href="{{ route('login') }}" class="mt-4 w-full justify-center">Posular a esta vacante</x-primary-link>
+                            @guest
+                            <x-primary-link href="{{ route('login') }}" class="mt-4 w-full justify-center">Ingresa para postularte a esta vacante</x-primary-link>
+                            @endguest
+                            @cannot('create', App\Models\Vacante::class)
+                                <livewire:postular-vacante :vacante="$vacante"/>
+                            @endcannot
                         </div>
                     </div>
                 </div>
