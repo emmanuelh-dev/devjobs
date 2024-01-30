@@ -10,7 +10,9 @@
                             <p class="text-sm font-semibold">Ultimo dia {{ $vacante->ultimo_dia }}</p>
                         </div>
                         <div class="flex flex-col lg:flex-row gap-2">
-                            <a class="p-2 text-center bg-gray-900 text-white rounded">Candidatos</a>
+                            <a href="{{ route('candidatos.index', $vacante) }}" class="p-2 text-center bg-gray-900 text-white rounded">
+                                <span class="rounded-full bg-blue-500 size-4 py-2 px-3">{{ $vacante->candidatos->count() }}</span> Candidatos
+                            </a>
                             <a href="{{ route('vacantes.edit', $vacante) }}"
                                 class="p-2 text-center bg-blue-500 text-white rounded">Editar</a>
                             <button wire:click="$dispatch('eliminar', {{ $vacante }})"

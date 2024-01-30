@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\vacanteController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('home');
 
 Route::view('dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -25,8 +26,9 @@ Route::get('vacantes', [vacanteController::class, 'index'])->middleware(['auth']
 Route::get('vacantes/nueva', [vacanteController::class, 'create'])->middleware(['auth'])->name('vacantes.create');
 Route::get('vacantes/{vacante}/edit', [vacanteController::class, 'edit'])->middleware(['auth'])->name('vacantes.edit');
 Route::get('vacantes/{vacante}', [vacanteController::class, 'show'])->name('vacantes.show');
+Route::get('candidatos/{vacante}', [CandidatoController::class, 'index'])->middleware(['auth'])->name('candidatos.index');
 
 
 // Notificaciones
-Route::get('notificaciones', NotificationController::class)->name('notificaciones');
+Route::get('notificaciones', NotificationController::class)->middleware(['auth', 'rol'])->name('notificaciones');
 require __DIR__ . '/auth.php';

@@ -29,19 +29,21 @@ new class extends Component {
 
                 @auth
 
-                    <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <!-- Navigation Links -->
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')" wire:navigate>
-                            {{ __('Mis vacantes') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')" wire:navigate>
-                            {{ __('Nueva Vacante') }}
-                        </x-nav-link>
+                        @can('create', App\Models\Vacante::class)
+                            <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')" wire:navigate>
+                                {{ __('Mis vacantes') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')" wire:navigate>
+                                {{ __('Nueva Vacante') }}
+                            </x-nav-link>
+                        @endauth
                     </div>
-                @endauth
+                @endcan
 
             </div>
 
@@ -134,12 +136,14 @@ new class extends Component {
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')" wire:navigate>
-                    {{ __('Vacantes') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')" wire:navigate>
-                    {{ __('Nueva vacante') }}
-                </x-responsive-nav-link>
+                @can('create', App\Models\Vacante::class)
+                    <x-responsive-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')" wire:navigate>
+                        {{ __('Vacantes') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')" wire:navigate>
+                        {{ __('Nueva vacante') }}
+                    </x-responsive-nav-link>
+                @endcan
             </div>
         @endauth
         @guest
